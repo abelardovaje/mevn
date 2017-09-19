@@ -1,0 +1,27 @@
+{
+  "name": "mevn",
+  "version": "1.0.0",
+  "description": "Mevn framework",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node build/server",
+    "dev": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.0.37",
+    "awesome-typescript-loader": "^3.2.3",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "source-map-loader": "^0.2.1"
+  },
+  "_moduleAliases": {
+    "app": "app"
+  },
+  "devDependencies": {
+    "ts-loader": "^2.3.7",
+    "typescript": "^2.5.2"
+  }
+}
