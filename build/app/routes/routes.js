@@ -1,11 +1,14 @@
 "use strict";
 exports.__esModule = true;
 var Routes = /** @class */ (function () {
-    function Routes() {
-        console.log('Routes');
+    function Routes(app) {
+        this.app = app;
+        this.run();
     }
-    Routes.prototype.index = function () {
-        console.log('index');
+    Routes.prototype.run = function () {
+        this.app.get('/home', function (req, res) {
+            res.send(true);
+        });
     };
     return Routes;
 }());

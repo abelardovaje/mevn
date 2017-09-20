@@ -1,15 +1,19 @@
 "use strict";
 exports.__esModule = true;
 var express = require("express");
-var Routes = require("./app/routes");
+var routes_1 = require("./app/routes");
 var Server = /** @class */ (function () {
     function Server(port) {
         this.port = port;
         this.app = express();
+        this.routes();
         this.run();
-        console.log(Routes.Routes);
     }
+    /*
+        Load all routes
+    */
     Server.prototype.routes = function () {
+        new routes_1.Routes(this.app);
     };
     /*
         Run server

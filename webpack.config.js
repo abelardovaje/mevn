@@ -1,12 +1,12 @@
 var webpack = require('webpack');
 module.exports = {
 	entry:{
-		server:'./server.ts'
+		app:'./resources/js/app.js'
 	},
 	output:{
 		filename:"[name].bundle.js",
 		chunkFilename:"[id].chunk.js",
-		path:__dirname + "./build/"
+		path:__dirname + "./public/dist"
 	},
 	plugins: [
         new webpack.optimize.CommonsChunkPlugin({

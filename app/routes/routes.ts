@@ -1,11 +1,13 @@
+import {Response,Request} from 'express';
 export class Routes {
 
-	constructor(){
-		console.log('Routes');
+	constructor(public app:any){		
+		this.run();
 	}
 
-
-	index(){
-		console.log('index');
+	run(){
+		this.app.get('/home',function(req:Request,res:Response){
+			res.send(true);
+		});
 	}
 }
