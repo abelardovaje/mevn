@@ -1,13 +1,17 @@
 import {Response,Request} from 'express';
-export class Routes {
+import {BaseRoute} from '../../vendor/';
 
-	constructor(public app:any){		
+export class Routes extends BaseRoute{
+	
+	constructor(public app:any){	
+		super(app);
 		this.run();
 	}
 
 	run(){
-		this.app.get('/home',function(req:Request,res:Response){
-			res.send(true);
-		});
+
+		this.get('/home','UserController@index');
+		this.get('/about','UserController@about');
+		
 	}
 }
