@@ -1,10 +1,15 @@
 import * as express  from 'express';
 import {Routes} from './app/routes';
+import {Database} from './config/database';
+import {Middlewares} from './config/Middlewares';
 class Server{
 
 	private app:express.Application = express();
 	constructor(public port:number){
+
+		this.middlewares();
 		this.routes();
+		this.db();
 		this.run();		
 	}
 
@@ -13,6 +18,21 @@ class Server{
 	*/
 	private routes(){			
 		 new Routes(this.app);
+	}
+
+	/*
+		Connect to database
+	*/
+
+	private db(){
+		new Database();
+	}
+
+	/*
+		Load all middlewares
+	*/
+	private middlewares(){
+		new Middlewares(this.app);
 	}
 
 	/*

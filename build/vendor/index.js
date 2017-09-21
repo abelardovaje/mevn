@@ -1,5 +1,7 @@
 "use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 exports.__esModule = true;
-var BaseRoute_1 = require("./BaseRoute");
-exports.BaseRoute = BaseRoute_1.BaseRoute;
+__export(require("./BaseRoute"));
 //# sourceMappingURL=index.js.map

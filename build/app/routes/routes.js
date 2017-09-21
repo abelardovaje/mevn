@@ -20,8 +20,8 @@ var Routes = /** @class */ (function (_super) {
         return _this;
     }
     Routes.prototype.run = function () {
-        this.get('/home', 'UserController@index');
-        this.get('/about', 'UserController@about');
+        this.view('/', 'index');
+        this.post('/about', 'UserController@about');
     };
     return Routes;
 }(_1.BaseRoute));

@@ -10,8 +10,8 @@ export class Routes extends BaseRoute{
 
 	run(){
 
-		this.get('/home','UserController@index');
-		this.get('/about','UserController@about');
+		this.view('/','index');
+		this.post('/about','UserController@about');
 		
 	}
 }

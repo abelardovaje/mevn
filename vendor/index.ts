@@ -1,5 +1,2 @@
-import {BaseRoute} from './BaseRoute';
+export * from './BaseRoute';
 
-export {
-	BaseRoute
-}

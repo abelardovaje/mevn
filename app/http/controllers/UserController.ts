@@ -1,13 +1,15 @@
 import { Router ,Request ,Response ,NextFunction } from 'express';
+import * as Model from '../../models';
 export class UserController{
 
 	constructor(){}
 
-	index(req:Request,res:Response){
+	public index(req:Request,res:Response){
+		
 		res.send(true);
 	}
 
-	about(req:Request,res:Response){
+	public about(req:Request,res:Response){
 		res.send(true);
 	}
 }
