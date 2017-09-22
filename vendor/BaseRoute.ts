@@ -1,18 +1,31 @@
 import { Router ,Request ,Response ,NextFunction } from 'express';
+import {Middlewares} from '../config/Middlewares';
 import * as path from 'path';
 import {Controller} from './Controller';
 export class BaseRoute {
 
-	constructor(public app:any){}	
+	public  Middlewares:any;
+	constructor(public app:any){
+		this.Middlewares = new Middlewares(app);
+	}	
 
-	get(url:string,controllerName:string){
+	get(url:string,controllerName:string,middlewareArray?:Array<string>){		
 		var arry = controllerName.split('@');
-		let method:any = new Controller(arry[0]);		
+		let method:any = new Controller(arry[0]);
+		let middlewares:Array<any> = [];
+		if(middlewareArray.length > 0){
+			for(var x in middlewareArray){				
+				middlewares.push(this.Middlewares[middlewareArray[x]]);
+			}			
+		}	
+
+		console.log('mid',middlewares);
+			
 		if(method){
 			if(!method[arry[1]]){
 				throw new Error('Method ' + arry[1] + ' is not declared');					
 			}			
-			this.app.get(url,method[arry[1]]);		
+			this.app.get(url,middlewares,method[arry[1]]);		
 		}else{			
 			throw new Error('Controller ' + arry[0] + ' is not created');		
 		}
@@ -43,7 +56,8 @@ export class BaseRoute {
 			});
 			
 		});
-	}		
+	}	
+	
 }
 
 

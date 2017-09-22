@@ -2,11 +2,12 @@ import * as express  from 'express';
 import {Routes} from './app/routes';
 import {Database} from './config/database';
 import {Middlewares} from './config/Middlewares';
+import {StaticPaths} from './config/StaticPaths';
 class Server{
 
 	private app:express.Application = express();
 	constructor(public port:number){
-
+		this.staticPaths();
 		this.middlewares();
 		this.routes();
 		this.db();
@@ -32,7 +33,14 @@ class Server{
 		Load all middlewares
 	*/
 	private middlewares(){
-		new Middlewares(this.app);
+		new Middlewares(this.app).run();
+	}
+
+	/*
+		Load all static paths
+	*/
+	private staticPaths(){
+		new StaticPaths(this.app);
 	}
 
 	/*

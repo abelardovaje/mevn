@@ -4,10 +4,12 @@ var express = require("express");
 var routes_1 = require("./app/routes");
 var database_1 = require("./config/database");
 var Middlewares_1 = require("./config/Middlewares");
+var StaticPaths_1 = require("./config/StaticPaths");
 var Server = /** @class */ (function () {
     function Server(port) {
         this.port = port;
         this.app = express();
+        this.staticPaths();
         this.middlewares();
         this.routes();
         this.db();
@@ -29,7 +31,13 @@ var Server = /** @class */ (function () {
         Load all middlewares
     */
     Server.prototype.middlewares = function () {
-        new Middlewares_1.Middlewares(this.app);
+        new Middlewares_1.Middlewares(this.app).run();
+    };
+    /*
+        Load all static paths
+    */
+    Server.prototype.staticPaths = function () {
+        new StaticPaths_1.StaticPaths(this.app);
     };
     /*
         Run server
