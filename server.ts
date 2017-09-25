@@ -26,7 +26,7 @@ class Server{
 	*/
 
 	private db(){
-		new Database();
+		new Database('localhost','test');
 	}
 
 	/*

@@ -37,17 +37,32 @@ export class BaseRoute {
 			
 	}
 
-	post(url:string,controllerName:string){
+	post(url:string,controllerName:string,middlewareArray?:Array<string>){		
 		var arry = controllerName.split('@');
-		let method:any = new Controller(arry[0]);		
+		let method:any = new Controller(arry[0]);
+		let middlewares:Array<any> = [];
+		if(middlewareArray){
+			if(middlewareArray.length > 0){
+				for(var x in middlewareArray){
+					let newMiddleware = this.Middlewares[middlewareArray[x]];						
+					if(newMiddleware){
+						middlewares.push(newMiddleware);
+					}else{
+						throw new Error(middlewareArray[x] +' Middleware is not defined');																		
+					}						
+				}			
+			}	
+		}
+				
 		if(method){
 			if(!method[arry[1]]){
 				throw new Error('Method ' + arry[1] + ' is not declared');					
 			}			
-			this.app.post(url,method[arry[1]]);		
+			this.app.post(url,middlewares,method[arry[1]]);		
 		}else{			
 			throw new Error('Controller ' + arry[0] + ' is not created');		
-		}			
+		}
+			
 	}
 
 	view(url:string,viewName:string){

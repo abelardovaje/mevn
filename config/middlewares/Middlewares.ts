@@ -42,9 +42,9 @@ export class Middlewares{
 		    next();
 		});
 
-		// app.use('/dashboard',function(){
-		// 	console.log('Must be authenticated');
-		// })
+		app.use('/ajax',function(){
+			console.log('Must be on ajax request only');
+		})
 
 	}
 

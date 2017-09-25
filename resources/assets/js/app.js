@@ -1,4 +1,4 @@
-
+import '../sass/style.scss';
 
 /**
  * We will create a fresh Vue application instance and attach it to

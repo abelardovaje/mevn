@@ -35,14 +35,28 @@ var BaseRoute = /** @class */ (function () {
             throw new Error('Controller ' + arry[0] + ' is not created');
         }
     };
-    BaseRoute.prototype.post = function (url, controllerName) {
+    BaseRoute.prototype.post = function (url, controllerName, middlewareArray) {
         var arry = controllerName.split('@');
         var method = new Controller_1.Controller(arry[0]);
+        var middlewares = [];
+        if (middlewareArray) {
+            if (middlewareArray.length > 0) {
+                for (var x in middlewareArray) {
+                    var newMiddleware = this.Middlewares[middlewareArray[x]];
+                    if (newMiddleware) {
+                        middlewares.push(newMiddleware);
+                    }
+                    else {
+                        throw new Error(middlewareArray[x] + ' Middleware is not defined');
+                    }
+                }
+            }
+        }
         if (method) {
             if (!method[arry[1]]) {
                 throw new Error('Method ' + arry[1] + ' is not declared');
             }
-            this.app.post(url, method[arry[1]]);
+            this.app.post(url, middlewares, method[arry[1]]);
         }
         else {
             throw new Error('Controller ' + arry[0] + ' is not created');

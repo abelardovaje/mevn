@@ -1,5 +1,6 @@
 import { Router ,Request ,Response ,NextFunction } from 'express';
 import * as Model from '../../models';
+
 export class UserController{
 
 	constructor(){}

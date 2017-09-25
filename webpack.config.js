@@ -1,5 +1,10 @@
 var webpack = require('webpack');
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var extractPlugin = new ExtractTextPlugin({
+    filename:'main.css'
+})
 module.exports = {
 	entry:{
 		app:'./resources/assets/js/app.js'
@@ -43,19 +48,15 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use:[{
-                    loader: "style-loader" // creates style nodes from JS strings
-                },{
-                    loader: "css-loader" // translates CSS into CommonJS
-                },{
-                    loader: "sass-loader", // compiles Sass to CSS,
-                    options: {
-                        includePaths: ["absolute/path/a", "absolute/path/b"]
-                    }
-                }]
+                use:extractPlugin.extract({
+                    use:['css-loader','sass-loader']
+                })
             }
         ]
-    }
+    },
+    plugins:[
+        extractPlugin
+    ]
     
 
 }

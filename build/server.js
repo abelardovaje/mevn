@@ -25,7 +25,7 @@ var Server = /** @class */ (function () {
         Connect to database
     */
     Server.prototype.db = function () {
-        new database_1.Database();
+        new database_1.Database('localhost', 'test');
     };
     /*
         Load all middlewares

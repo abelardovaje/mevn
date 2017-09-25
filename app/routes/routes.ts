@@ -11,7 +11,7 @@ export class Routes extends BaseRoute{
 	run(){
 
 		this.view('/','index');
-		this.post('/about','UserController@about');
+		this.post('/about','UserController@about',['Auth']);
 		this.get('/dashboard','UserController@about',['Auth']);
 	}
 }

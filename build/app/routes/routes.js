@@ -21,7 +21,7 @@ var Routes = /** @class */ (function (_super) {
     }
     Routes.prototype.run = function () {
         this.view('/', 'index');
-        this.post('/about', 'UserController@about');
+        this.post('/about', 'UserController@about', ['Auth']);
         this.get('/dashboard', 'UserController@about', ['Auth']);
     };
     return Routes;
