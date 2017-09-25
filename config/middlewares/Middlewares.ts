@@ -10,14 +10,7 @@ import * as csurf from 'csurf';
 
 export class Middlewares{
 
-	constructor(private app:any){				
-		
-	}
-
-	ajax(req:Request, res:Response, next:NextFunction){
-		console.log('ajax');
-		next();
-	}
+	constructor(private app:any){}
 
 	run(){
 

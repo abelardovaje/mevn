@@ -1,23 +1,30 @@
 "use strict";
 exports.__esModule = true;
-var Middlewares_1 = require("../config/Middlewares");
+var Middlewares = require("../config/Middlewares");
 var path = require("path");
 var Controller_1 = require("./Controller");
 var BaseRoute = /** @class */ (function () {
     function BaseRoute(app) {
         this.app = app;
-        this.Middlewares = new Middlewares_1.Middlewares(app);
+        this.Middlewares = Middlewares;
     }
     BaseRoute.prototype.get = function (url, controllerName, middlewareArray) {
         var arry = controllerName.split('@');
         var method = new Controller_1.Controller(arry[0]);
         var middlewares = [];
-        if (middlewareArray.length > 0) {
-            for (var x in middlewareArray) {
-                middlewares.push(this.Middlewares[middlewareArray[x]]);
+        if (middlewareArray) {
+            if (middlewareArray.length > 0) {
+                for (var x in middlewareArray) {
+                    var newMiddleware = this.Middlewares[middlewareArray[x]];
+                    if (newMiddleware) {
+                        middlewares.push(newMiddleware);
+                    }
+                    else {
+                        throw new Error(middlewareArray[x] + ' Middleware is not defined');
+                    }
+                }
             }
         }
-        console.log('mid', middlewares);
         if (method) {
             if (!method[arry[1]]) {
                 throw new Error('Method ' + arry[1] + ' is not declared');

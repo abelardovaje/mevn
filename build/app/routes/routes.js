@@ -22,7 +22,7 @@ var Routes = /** @class */ (function (_super) {
     Routes.prototype.run = function () {
         this.view('/', 'index');
         this.post('/about', 'UserController@about');
-        this.get('/dashboard', 'UserController@about');
+        this.get('/dashboard', 'UserController@about', ['Auth']);
     };
     return Routes;
 }(_1.BaseRoute));
